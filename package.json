@@ -2,15 +2,16 @@
   "name": "package.json",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "dev": "vite ./src/",
+    "build": "vite ./src/ build",
+    "serve": "vite ./src/ preview"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "react-redux": "^7.2.6"
+    "react-redux": "^7.2.6",
+    "redux-logger": "^3.0.6"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.0",
