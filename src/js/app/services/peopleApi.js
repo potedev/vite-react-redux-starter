@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export const apiSlice = createApi({
+export const peopleApi = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://swapi.dev/api/'
@@ -16,4 +16,4 @@ export const apiSlice = createApi({
     }
 })
 
-export const { useFetchPeopleQuery } = apiSlice
+export const { useFetchPeopleQuery } = peopleApi
