@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const peopleApi = createApi({
-    reducerPath: 'api',
+    reducerPath: 'peopleApi',
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://swapi.dev/api/'
     }),
