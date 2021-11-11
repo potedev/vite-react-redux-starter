@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation, Navigate } from 'react-router-dom'
+import { Layout } from '../layout/Layout'
 
 export const RequireAuth = ({ children }) => {
 
@@ -15,5 +16,5 @@ export const RequireAuth = ({ children }) => {
         return <Navigate to="/login" state={{ from: location }} />;
     }
 
-    return children;
+    return <Layout children={children}></Layout>;
 }

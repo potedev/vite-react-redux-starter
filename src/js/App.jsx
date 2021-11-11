@@ -4,6 +4,8 @@ import {
   Route,
 } from "react-router-dom";
 
+import { useSelector } from 'react-redux';
+
 //auth
 import { RequireAuth } from './features/auth/requireAuth'
 import { useIsAuth } from './hooks/useIsAuth'
@@ -21,45 +23,43 @@ import '../css/App.css'
 import { Layout } from './features/layout/Layout';
 
 function App() {
+  const isInitialized = useSelector(state => state.auth.isInitialized)
 
-  const { isFetching } = useIsAuth();
+  useIsAuth();
 
-  console.log('IS FETCHING USER', isFetching);
-
-  if (isFetching) return <p>App is Loading</p>
+  if (!isInitialized) return <p>App is Loading</p>
 
   return (
     <div className="App">
       <Routes>
         <Route>
+
+          <Route
+            path="/"
+            element={
+              <RequireAuth>
+                <UsersManager />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/people"
+            element={
+              <RequireAuth>
+                <PeopleManager />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/starships"
+            element={
+              <RequireAuth>
+                <StartshipsManager />
+              </RequireAuth>
+            }
+          />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route element={<Layout />}>
-            <Route
-              path="/"
-              element={
-                <RequireAuth>
-                  <UsersManager />
-                </RequireAuth>
-              }
-            />
-            <Route
-              path="/people"
-              element={
-                <RequireAuth>
-                  <PeopleManager />
-                </RequireAuth>
-              }
-            />
-            <Route
-              path="/starships"
-              element={
-                <RequireAuth>
-                  <StartshipsManager />
-                </RequireAuth>
-              }
-            />
-          </Route>
         </Route>
       </Routes>
     </div>

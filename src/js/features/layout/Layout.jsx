@@ -1,8 +1,10 @@
 import React from 'react'
-import { Outlet, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { HeaderBar } from "../header/HeaderBar";
 
-export const Layout = () => {
+export const Layout = ({ children }) => {
+
+    console.log(children);
     return (
         <div className="layout">
             <div className="header-and-navigation">
@@ -14,7 +16,7 @@ export const Layout = () => {
                 </ul>
             </div>
             <div className="page">
-                <Outlet />
+                {children}
             </div>
         </div>
     )

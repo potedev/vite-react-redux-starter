@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useFetchCurrentUserQuery } from '../app/services/authApi';
 
-import { setCredentials } from '../features/auth/authSlice';
+import { setCredentials, setIsInitialized } from '../features/auth/authSlice';
 import { getLocalStorageItem } from '../utils/localStorage';
 
 export const useIsAuth = () => {
@@ -15,15 +15,19 @@ export const useIsAuth = () => {
 
         if (accessToken && xsrfToken) {
             dispatch(setCredentials({ accessToken, xsrfToken }))
+        } else {
+            dispatch(setIsInitialized())
         }
     }, [])
 
-    const { data, isFetching, refetch } = useFetchCurrentUserQuery()
+    const { error, refetch } = useFetchCurrentUserQuery()
 
-    //Todo remove cach from get /auth/me
-    if(auth.isAuthenticated && !auth.user) {
+    if (auth.isAuthenticated && !auth.user) {
         refetch();
     }
 
-    return { isFetching }
+    if (error) {
+        console.log('error in fetching user')
+        dispatch(setIsInitialized())
+    }
 }

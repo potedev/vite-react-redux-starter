@@ -9,9 +9,6 @@ export const authApi = createApi({
             const accessToken = getState().auth.accessToken
             const xsrfToken = getState().auth.xsrfToken
 
-            console.log('access Token', accessToken)
-            console.log('xsrfToken', xsrfToken)
-
             if (accessToken && xsrfToken) {
                 headers.set('authorization', `Bearer ${accessToken}`)
                 headers.set('x-xsrf-token', xsrfToken)
@@ -20,7 +17,6 @@ export const authApi = createApi({
             return headers
         },
     }),
-    keepUnusedDataFor: false,
     endpoints(builder) {
         return {
             fetchCurrentUser: builder.query({

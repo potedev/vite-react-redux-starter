@@ -11,20 +11,30 @@ const initialState = {
     xsrfToken: null,
     isAuthenticated: false,
     isLoading: false,
+    isInitialized: false
 }
 
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        logout: () => initialState,
+        logout: (state) => {
+            state.isLoading = false
+            state.user = null
+            state.accessToken = null
+            state.accessTokenExpiresIn = null
+            state.refreshToken = null
+            state.refreshTokenExpiresIn = null;
+            state.isAuthenticated = false;
+            state.xsrfToken = null;
+            state.isInitialized = true
+        },
         setCredentials: (state, action) => {
-            console.log(action);
             state.accessToken = action.payload.accessToken
             state.xsrfToken = action.payload.xsrfToken
         },
-        setIsLoading: (state, action) => {
-            state.isLoading = action.payload
+        setIsInitialized: (state) => {
+            state.isInitialized = true
         }
     },
     extraReducers: (builder) => {
@@ -58,15 +68,15 @@ export const authSlice = createSlice({
                 state.isAuthenticated = true;
                 state.isLoading = false
                 state.user = action.payload
+                state.isInitialized = true
             })
             .addMatcher(authApi.endpoints.fetchCurrentUser.matchRejected, (state, action) => {
                 console.log('rejected fetching current user', action);
-                state = initialState
             })
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { logout, setCredentials, setIsLoading } = authSlice.actions
+export const { logout, setCredentials, setIsInitialized } = authSlice.actions
 
 export default authSlice.reducer
