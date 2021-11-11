@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { HeaderBar } from "../header/HeaderBar";
 
 export const Layout = ({ children }) => {
-
-    console.log(children);
     return (
         <div className="layout">
             <div className="header-and-navigation">
