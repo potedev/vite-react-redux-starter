@@ -7,6 +7,7 @@ export const Layout = ({ children }) => {
         <div className="layout">
             <div className="header-and-navigation">
                 <HeaderBar />
+                <hr/>
                 <ul style={{ display: "flex", justifyContent: "space-evenly" }}>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/people">People</Link></li>

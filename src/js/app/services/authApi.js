@@ -22,7 +22,8 @@ export const authApi = createApi({
             fetchCurrentUser: builder.query({
                 query() {
                     return `/auth/me`;
-                }
+                },
+                refetchOnFocus: true
             }),
             login: builder.mutation({
                 query: (body) => ({

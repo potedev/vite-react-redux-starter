@@ -8,8 +8,9 @@ export const peopleApi = createApi({
     endpoints(builder) {
         return {
             fetchPeople: builder.query({
-                query(limit = 10) {
-                    return `/people?limit=${limit}`;
+                query(params) {
+                    const { page, search } = params;
+                    return `/people?search=${search}&page=${page}`
                 }
             })
         }
