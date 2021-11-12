@@ -9,9 +9,11 @@ export const PeopleManager = () => {
 
     let nbPage;
 
+    //Count -> 82
+    //Limit -> 10
+    //nb results 82/10 -> 8.2 -> math.ceil -> 9
     if (data) nbPage = Math.ceil(data.count / limit)
-
-    console.log(search);
+    console.log(page);
 
     return <div>
         <h1>Star wars character here</h1>

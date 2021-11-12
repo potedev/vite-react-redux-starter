@@ -20,20 +20,21 @@ import { PeopleManager } from './features/people/PeopleManager';
 import { StartshipsManager } from './features/starships/starshipsManageR';
 
 import '../css/App.css'
-import { Layout } from './features/layout/Layout';
 
 function App() {
   const isInitialized = useSelector(state => state.auth.isInitialized)
 
+  //La logique pour savoir si l'utilisateur.rice est connecté.e
+  //Avec le useEffect()
   useIsAuth();
 
+  //Si l'application n'est pas encore initialisé
   if (!isInitialized) return <p>App is Loading</p>
 
   return (
     <div className="App">
       <Routes>
         <Route>
-
           <Route
             path="/"
             element={
